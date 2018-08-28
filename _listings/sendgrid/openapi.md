@@ -1,10 +1,8 @@
----
 swagger: "2.0"
 x-collection-name: SendGrid
 x-complete: 1
 info:
   title: SendGrid
-  description: the-sendgrid-web-api-v3-documentation--this-is-the-entirety-of-the-documented-v3-endpoints--we-have-updated-all-the-descriptions-parameters-requests-and-responses--authentication-every-endpoint-requires-authentication-in-the-form-of-an-authorization-header-authorization-bearer-api-key
   version: 1.0.0
 host: api.sendgrid.com
 basePath: /v3
@@ -399,4 +397,194 @@ paths:
       - Name
       - Stats
       - Monthly
----
+  /whitelabel/domains/subuser:
+    delete:
+      summary: Delete Whitelabel Domains Subuser
+      description: |-
+        **This endpoint allows you to disassociate a specific whitelabel from a subuser.**
+
+        A domain whitelabel allows you to remove the ???via??? or ???sent on behalf of??? message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+        Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The the parent may then associate the whitelabel via the subuser management tools.
+
+        For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
+
+        ## URI Parameters
+        | URI Parameter   | Type  | Required?  | Description  |
+        |---|---|---|---|
+        | username | string  | required  | Username for the subuser to find associated whitelabels for. |
+      operationId: whitelabel.domains.subuser.delete
+      x-api-path-slug: whitelabeldomainssubuser-delete
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: No Name
+      responses:
+        200:
+          description: OK
+      tags:
+      - Email
+      - Whitelabel
+      - Domains
+      - Subuser
+    get:
+      summary: Get Whitelabel Domains Subuser
+      description: |-
+        **This endpoint allows you to retrieve all of the whitelabels that have been assigned to a specific subuser.**
+
+        A domain whitelabel allows you to remove the ???via??? or ???sent on behalf of??? message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+        Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The the parent may then associate the whitelabel via the subuser management tools.
+
+        For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
+
+        ## URI Parameters
+        | URI Parameter   | Type  | Description  |
+        |---|---|---|
+        | username | string  | Username of the subuser to find associated whitelabels for. |
+      operationId: whitelabel.domains.subuser.get
+      x-api-path-slug: whitelabeldomainssubuser-get
+      parameters:
+      - in: query
+        name: No Name
+      responses:
+        200:
+          description: OK
+      tags:
+      - Email
+      - Whitelabel
+      - Domains
+      - Subuser
+  /whitelabel/domains/{domain_id}/subuser:
+    post:
+      summary: Add Whitelabel Domains Domain  Subuser
+      description: |-
+        **This endpoint allows you to associate a specific domain whitelabel with a subuser.**
+
+        A domain whitelabel allows you to remove the ???via??? or ???sent on behalf of??? message that your recipients see when they read your emails. Whitelabeling a domain allows you to replace sendgrid.net with your personal sending domain. You will be required to create a subdomain so that SendGrid can generate the DNS records which you must give to your host provider. If you choose to use Automated Security, SendGrid will provide you with 3 CNAME records. If you turn Automated Security off, you will be given 2 TXT records and 1 MX record.
+
+        Domain whitelabels can be associated with (i.e. assigned to) subusers from a parent account. This functionality allows subusers to send mail using their parent's whitelabels. To associate a whitelabel with a subuser, the parent account must first create the whitelabel and validate it. The the parent may then associate the whitelabel via the subuser management tools.
+
+        For more information on whitelabeling, please see our [User Guide](https://sendgrid.com/docs/User_Guide/Settings/Whitelabel/index.html)
+
+        ## URI Parameters
+        | URI Parameter   | Type   | Description  |
+        |---|---|---|
+        | domain_id | integer   | ID of the domain whitelabel to associate with the subuser. |
+      operationId: whitelabel.domains.domain_id.subuser.post
+      x-api-path-slug: whitelabeldomainsdomain-idsubuser-post
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: No Name
+      responses:
+        200:
+          description: OK
+      tags:
+      - Email
+      - Whitelabel
+      - Domains
+      - Domain
+      - ""
+      - Subuser
+  /whitelabel/links/subuser:
+    delete:
+      summary: Delete Whitelabel Links Subuser
+      description: |-
+        **This endpoint allows you to disassociate a link whitelabel from a subuser.**
+
+        Link whitelables can be associated with subusers from the parent account. This functionality allows
+        subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
+        must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
+
+        Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+        For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
+      operationId: whitelabel.links.subuser.delete
+      x-api-path-slug: whitelabellinkssubuser-delete
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: No Name
+      - in: query
+        name: username
+        description: The username of the subuser account that you want to disassociate
+          a link whitelabel from
+      responses:
+        200:
+          description: OK
+      tags:
+      - Email
+      - Whitelabel
+      - Links
+      - Subuser
+    get:
+      summary: Get Whitelabel Links Subuser
+      description: |-
+        **This endpoint allows you to retrieve the associated link whitelabel for a subuser.**
+
+        Link whitelables can be associated with subusers from the parent account. This functionality allows
+        subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
+        must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
+
+        Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+        For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
+      operationId: whitelabel.links.subuser.get
+      x-api-path-slug: whitelabellinkssubuser-get
+      parameters:
+      - in: query
+        name: No Name
+      - in: query
+        name: username
+        description: The username of the subuser to retrieve associated link whitelabels
+          for
+      responses:
+        200:
+          description: OK
+      tags:
+      - Email
+      - Whitelabel
+      - Links
+      - Subuser
+  /whitelabel/links/{link_id}/subuser:
+    post:
+      summary: Add Whitelabel Links Link  Subuser
+      description: |-
+        **This endpoint allows you to associate a link whitelabel with a subuser account.**
+
+        Link whitelables can be associated with subusers from the parent account. This functionality allows
+        subusers to send mail using their parent's linke whitelabels. To associate a link whitelabel, the parent account
+        must first create a whitelabel and validate it. The parent may then associate that whitelabel with a subuser via the API or the Subuser Management page in the user interface.
+
+        Email link whitelabels allow all of the click-tracked links you send in your emails to include the URL of your domain instead of sendgrid.net.
+
+        For more information, please see our [User Guide](https://sendgrid.com/docs/API_Reference/Web_API_v3/Whitelabel/links.html).
+      operationId: whitelabel.links.link_id.subuser.post
+      x-api-path-slug: whitelabellinkslink-idsubuser-post
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: No Name
+      responses:
+        200:
+          description: OK
+      tags:
+      - Email
+      - Whitelabel
+      - Links
+      - Link
+      - ""
+      - Subuser
